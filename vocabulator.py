@@ -2,12 +2,15 @@ import os
 import re
 import codecs
 
+# variables
 text = []
 inputs = []
 total = []
 exception = []
 counter = 0
 
+
+# pre-processing
 print("Encoding:")
 encoding = input()
 
@@ -18,6 +21,9 @@ for file in os.listdir("input"):
     except IOError:
         print(file, "is unreadable.")
 
+dictionary = open("dictionary.txt").read().split("\n")
+
+# parsing
 print("Program may appear frozen while processing.")
 
 for c in text:
@@ -53,11 +59,13 @@ for c in text:
 total.sort()
 btotal = []
 
+# dictionary analysis
 dictionary = open("dictionary.txt").read().split("\n")
 for word in total:
     if word in dictionary:
         btotal.append(word)
 
+# export
 print("Total vocabulary:", len(btotal))
 print("Export vocabulary to file? Y/N")
 
