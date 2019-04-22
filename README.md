@@ -1,5 +1,5 @@
 # vocabulator
-A tool for estimating the vocabulary of a given set of texts via a dictionary analysis.
+A tool for estimating the vocabulary of a given set of texts via dictionary analysis.
 
 **Usage:**
 1. Generate a `dictionary.txt` with makedict and place it in the root folder.
@@ -8,7 +8,10 @@ A tool for estimating the vocabulary of a given set of texts via a dictionary an
 4. Results will be found in `vocabulary.txt`
 
 **Notes:**
-Since calculating Dicken's vocabulary using his extant corpus of works takes approximately 35 minutes on a reasonably powerful computer (the result was a vocabulary of ~18,000 words!), make a cup of coffee while you wait.
+
+Make a coffee while you wait - the program can take quite a while depending on the number of input files. 
+
+For example, calculating Dicken's vocabulary through his extant corpus of works takes upwards of fifteen minutes on a reasonably decent computer (the result? ~19,000 words).
 
 **To-do:**
 1. Allow logging of statistics to file.
