@@ -1,9 +1,11 @@
-import string
 import os
+import re
+import codecs
 
 text = []
 inputs = []
 total = []
+exception = []
 counter = 0
 
 print("Encoding:")
@@ -23,7 +25,20 @@ for c in text:
     unique = []
     for word in c.read().split():
         temp = word.lower()
-        temp.translate(str.maketrans("", "", string.whitespace + "!.,'"))
+        temp = re.sub('[?:,!.;\'_()‘’]', '', temp)
+        position = temp.find("-")
+        if position == -1:
+            position = temp.find("—")
+        if position > 1:
+            temporary = temp[position+1:]
+            temporary = re.sub('[-]', '', temporary)
+            if temporary not in unique:
+                unique.append(temporary)
+            if temporary not in total:
+                total.append(temporary)
+            words.append(temporary)
+            temp = temp[:position]
+        temp = re.sub('[-]', '', temp)
         if temp not in unique:
             unique.append(temp)
         if temp not in total:
@@ -47,7 +62,7 @@ print("Total vocabulary:", len(btotal))
 print("Export vocabulary to file? Y/N")
 
 if input() == "Y":
-    out = open("vocabulary.txt", "w")
+    out = open("vocabulary.txt", "w", encoding=encoding)
     for word in btotal:
         out.write(word)
         out.write("\n")
