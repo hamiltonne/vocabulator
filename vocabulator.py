@@ -42,7 +42,6 @@ for file in text:
     unique = []
 
     for word in file.read().split():
-        process(word)
         temp = word.lower()
         temp = re.sub('[?:,!.;\'_()‘’]', '', temp)
 
