@@ -15,7 +15,7 @@ text = []
 inputs = []
 total = []
 hyphen = []
-exception = []
+vocabulary = []
 counter = 0
 
 # pre-processing
@@ -66,10 +66,8 @@ for file in text:
     counter = counter+1
 
 total.sort()
-vocabulary = []
 
 # dictionary analysis
-dictionary = open("dictionary.txt").read().split("\n")
 for word in total:
     if word in dictionary:
         vocabulary.append(word)
@@ -78,7 +76,7 @@ for word in total:
 print("Total vocabulary:", len(vocabulary))
 print("Export vocabulary to file? Y/N")
 
-if input() == "Y":
+if input() == "Y" or "y" or "yes" or "Yes":
     out = open("vocabulary.txt", "w", encoding=encoding)
     for word in vocabulary:
         out.write(word)
