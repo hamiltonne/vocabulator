@@ -10,7 +10,7 @@ def process(add):
         total.append(add)
     words.append(add)
 
-# variables
+# Variables
 text = []
 inputs = []
 total = []
@@ -18,7 +18,7 @@ hyphen = []
 vocabulary = []
 counter = 0
 
-# pre-processing
+# Pre-processing
 print("Encoding:", end = " ")
 encoding = input()
 for file in os.listdir("input"):
@@ -32,7 +32,7 @@ for word in dictionary:
     if "-" in word:
         hyphen.append(word)
 
-# parsing
+# Parsing
 print("Program may appear frozen while processing!")
 for file in text:
     words = []
@@ -55,20 +55,20 @@ for file in text:
     counter = counter+1
 total.sort()
 
-# dictionary analysis
+# Dictionary Analysis
 for word in total:
     if word in dictionary:
         vocabulary.append(word)
 
 # export
 print("Total vocabulary:", len(vocabulary))
-print("Export vocabulary to file? Y/N")
+print("Export? [y/n]:", end = " ")
 if input() == "Y" or "y" or "yes" or "Yes":
     out = open("vocabulary.txt", "w", encoding=encoding)
     for word in vocabulary:
         out.write(word+"\n")
     out.close()
-    print("Exported to vocabulary.txt")
+    print("Exported to vocabulary.txt", end = " ")
     quit()
 else:
     quit()
