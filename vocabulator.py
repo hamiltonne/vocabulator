@@ -1,14 +1,14 @@
 import os
 import re
+import bisect
 
-
+# Functions
 def process(add):
     if add not in unique:
         unique.append(add)
     if add not in total:
         total.append(add)
     words.append(add)
-
 
 # variables
 text = []
@@ -19,32 +19,27 @@ vocabulary = []
 counter = 0
 
 # pre-processing
-print("Encoding:")
+print("Encoding:", end = " ")
 encoding = input()
-
 for file in os.listdir("input"):
     try:
         text.append(open("input/" + file, encoding=encoding))
         inputs.append(file)
     except IOError:
         print(file, "is unreadable.")
-
 dictionary = open("dictionary.txt").read().split("\n")
 for word in dictionary:
     if "-" in word:
         hyphen.append(word)
 
 # parsing
-print("Program may appear frozen while processing.")
-
+print("Program may appear frozen while processing!")
 for file in text:
     words = []
     unique = []
-
     for word in file.read().split():
         temp = word.lower()
         temp = re.sub('[?:,!.;\'_()‘’]', '', temp)
-
         position = temp.find("-")
         if position == -1:
             position = temp.find("—")
@@ -55,15 +50,9 @@ for file in text:
                 process(temporary)
                 temp = temp[:position]
                 temp = re.sub('[-—]', '', temp)
-
         process(temp)
-
-    print("Statistics for", inputs[counter])
-    print("\tTotal words used: ", len(words))
-    print("\tUnique words: ", len(unique))
-    print("\tPercentage of unique words in text:", round((len(unique) / len(words)) * 100), "%")
+    print("Total number of words used for", inputs[counter], ":", len(unique))
     counter = counter+1
-
 total.sort()
 
 # dictionary analysis
@@ -74,12 +63,10 @@ for word in total:
 # export
 print("Total vocabulary:", len(vocabulary))
 print("Export vocabulary to file? Y/N")
-
 if input() == "Y" or "y" or "yes" or "Yes":
     out = open("vocabulary.txt", "w", encoding=encoding)
     for word in vocabulary:
-        out.write(word)
-        out.write("\n")
+        out.write(word+"\n")
     out.close()
     print("Exported to vocabulary.txt")
     quit()
