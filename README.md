@@ -1,5 +1,5 @@
 # vocabulator
-A tool for estimating the vocabulary of a given set of texts.
+A tool for estimating the vocabulary of a given set of texts. Requires Python 3.8.
 
 Vocabulator is designed to read in plain text files encoded in [any format supported by Python](https://docs.python.org/3/library/codecs.html#standard-encodings).
 
@@ -8,7 +8,7 @@ Vocabulator is designed to read in plain text files encoded in [any format suppo
 2. Preapre your text files to be read in. Two requirements:
    - They must be in plain text.
    - They must stored in a subdirectory in the program's root
-3. Run `py vocabulator.py` with two positional commands: input directory & encoding format (usually either `ascii` or `utf8`)
+3. Run `python vocabulator.py` with two positional commands: input directory & encoding format (usually either `ascii` or `utf8`)
 
 **Notes:**
 The program can take a while depending on the size of the input.
