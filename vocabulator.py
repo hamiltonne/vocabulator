@@ -1,5 +1,6 @@
 import os
 import re
+import argparse
 
 # Functions
 def process(add):
@@ -17,12 +18,27 @@ hyphen = []
 vocabulary = []
 counter = 0
 
+# Argument parsing
+parser = argparse.ArgumentParser(prog='vocabulator',
+                                 description='Estimate the vocabularly of a given set of texts',
+                                 epilog='Note: vocabulator requires a dictionary.txt')
+parser.add_argument("directory",
+                    help='specifies a directory to read texts from, required option')
+parser.add_argument("encoding",
+                    help='specifies an encoding format to read and save with')
+parser.add_argument('-v', '--verbose',
+                    help='enables verbose output',
+                    dest='verbose',
+                    action='store_true')
+parser.add_argument('-o', '--output',
+                    help='specifices a file to export the vocabulary list to',
+                    dest='output')
+args = parser.parse_args()
+
 # Pre-processing
-print("Encoding:", end = " ")
-encoding = input()
-for file in os.listdir("input"):
+for file in os.listdir(args.directory):
     try:
-        text.append(open("input/" + file, encoding=encoding))
+        text.append(open(args.directory + '/' + file, encoding=args.encoding))
         inputs.append(file)
     except IOError:
         print(file, "is unreadable.")
@@ -50,7 +66,8 @@ for file in text:
                 temp = temp[:position]
                 temp = re.sub('[-—]', '', temp)
         process(temp)
-    print("Total number of words used for", inputs[counter], ":", len(unique))
+    if args.verbose is True:
+        print("Total number of words in ", inputs[counter], ":", len(unique))
     counter = counter+1
 total.sort()
 
@@ -58,16 +75,15 @@ total.sort()
 for word in total:
     if word in dictionary:
         vocabulary.append(word)
-
-# export
 print("Total vocabulary:", len(vocabulary))
-print("Export? [y/n]:", end = " ")
-if input() == "Y" or "y" or "yes" or "Yes":
-    out = open("vocabulary.txt", "w", encoding=encoding)
+
+# Export
+if args.output is not None:
+    out = open(args.output, "w", encoding=args.encoding)
     for word in vocabulary:
-        out.write(word+"\n")
+      out.write(word+"\n")
     out.close()
-    print("Exported to vocabulary.txt", end = " ")
-    quit()
+    print("Exported to", args.output)
+    quit()  
 else:
-    quit()
+    quit() 
