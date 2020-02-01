@@ -5,14 +5,14 @@ Vocabulator is designed to read in plain text files encoded in [any format suppo
 
 **Usage:**
 1. Generate a `dictionary` with `makedict` ([available here](https://github.com/hamiltonne/makedict)).
-2. Preapre your text files to be read in. Two requirements:
+2. Prepare your text files to be read in. Two requirements:
    - They must be in plain text.
    - They must stored in a subdirectory in the program's root
 3. Run `python vocabulator.py` with two positional commands: input directory & encoding format (usually either `ascii` or `utf8`)
 
 **Notes:**
-The program can take a while depending on the size of the input.
-Accuracy is ~90% - it may miss certain conjugated verbs and nouns but in most cases those words will appear in other recognizable tenses.
+The program can take a while depending on the input.
+Accuracy is ~90% - it may miss certain conjugated verbs and nouns but in most cases these words will appear in other recognizable tenses.
 Considering the accuracy, this tool is best used for comparative analyses rather than estimating the vocabulary demonstrated by a single work or author. 
 
 **To-do:**
@@ -20,5 +20,5 @@ Considering the accuracy, this tool is best used for comparative analyses rather
 2. Improve accuracy.
    - Implement function to check unknown word against common suffixes & plural endings
    - Implement dump function to check rejected strings
-3. Implement GUI
-4. Merge `makedict` script
+3. Implement GUI.
+4. Merge `makedict` script.
