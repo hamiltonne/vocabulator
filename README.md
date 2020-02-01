@@ -13,5 +13,7 @@ Considering the accuracy, this tool is best used for comparative analyses rather
 **To-do:**
 1. Allow logging of statistics to file.
 2. Improve accuracy.
-   - Implement function to check unknown word against common verb endings & plural endings
+   - Implement function to check unknown word against common suffixes & plural endings
+   - Implement dump function to check rejected strings
 3. Implement GUI
+4. Merge `makedict` script
