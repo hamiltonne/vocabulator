@@ -2,7 +2,7 @@
 A tool for estimating the vocabulary of a given set of texts.
 
 **Usage:**
-1. Generate a dictionary.txt with `makedict` ([available here](https://github.com/hamiltonne/makedict)]).
+1. Generate a `dictionary` with `makedict` ([available here](https://github.com/hamiltonne/makedict)).
 2. Run `py vocabulator.py` with two positional commands: output directory & encoding format (usually either `ascii` or `utf8`)
 
 **Notes:**
