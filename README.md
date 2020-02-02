@@ -4,10 +4,10 @@ A tool for estimating the vocabulary of a given set of texts. Requires Python 3.
 Vocabulator is designed to read in plain text files encoded in [any format supported by Python](https://docs.python.org/3/library/codecs.html#standard-encodings).
 
 **Usage:**
-1. Generate a `dictionary` with `makedict` ([available here](https://github.com/hamiltonne/makedict)).
+1. Generate a `dictionary` file with `makedict` ([available here](https://github.com/hamiltonne/makedict)).
 2. Prepare your text files to be read in. Two requirements:
    - They must be in plain text.
-   - They must stored in a subdirectory in the program's root
+   - They must be stored in a subdirectory in the program's root
 3. Run `python vocabulator.py` with two positional commands: input directory & encoding format (usually either `ascii` or `utf8`)
 
 **Notes:**

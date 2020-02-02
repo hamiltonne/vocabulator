@@ -107,7 +107,7 @@ for file in text:
     counter = counter+1
 total.sort()
 
-# Dictionary Analysis
+# Dictionary analysis
 for word in total:
     if word in dictionary:
         vocabulary.append(word)
