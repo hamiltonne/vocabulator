@@ -3,12 +3,43 @@ import re
 import argparse
 
 # Functions
-def process(add):
-    if add not in unique:
-        unique.append(add)
-    if add not in total:
-        total.append(add)
-    words.append(add)
+def process(x):
+    if x not in unique:
+        unique.append(x)
+    if x not in total:
+        total.append(x)
+    words.append(x)
+
+def openfile(x, y):
+    out = open(x, "w", encoding=y)
+    return out
+
+def guess(x):
+    if x[-3:] == "ing":
+        if x[:-3] in dictionary and x[:-3] not in vocabulary:
+            vocabulary.append(word)
+    elif x[-3:] == "est":
+        if x[:-3] in dictionary and x[:-3] not in vocabulary:
+            vocabulary.append(word)
+    elif x[-2:] == "ly":
+        if x[:-2] in dictionary and x[:-2] not in vocabulary:
+            vocabulary.append(word)
+    elif x[-2:] == "er":
+        if x[:-2] in dictionary and x[:-2] not in vocabulary:
+            vocabulary.append(word)
+    elif x[:2] == "un":
+        if x[2:] in dictionary and x[2:] not in vocabulary:
+            vocabulary.append(word)
+    elif x[-1:] == "s":
+        if x[:-1] in dictionary and x[:-1] not in vocabulary:
+            vocabulary.append(word)
+    elif x[-1:] == "d":
+        if x[:-1] in dictionary and x[:-1] not in vocabulary:
+            vocabulary.append(word)
+    else:
+        if args.dump is not None:
+            dump.write(word+"\n")
+    return vocabulary
 
 # Variables
 text = []
@@ -33,6 +64,9 @@ parser.add_argument('-v', '--verbose',
 parser.add_argument('-o', '--output',
                     help='specifices a file to export the vocabulary list to',
                     dest='output')
+parser.add_argument('-d', '--dump',
+                    help='specifices a file to write failed words to',
+                    dest='dump')
 args = parser.parse_args()
 
 # Pre-processing
@@ -46,7 +80,9 @@ dictionary = open("dictionary").read().split("\n")
 for word in dictionary:
     if "-" in word:
         hyphen.append(word)
-
+if args.dump is not None:
+    dump = openfile(args.dump, args.encoding)
+        
 # Parsing
 print("Program may appear frozen while processing!")
 for file in text:
@@ -54,7 +90,7 @@ for file in text:
     unique = []
     for word in file.read().split():
         temp = word.lower()
-        temp = re.sub('[?:,!.;\'_()‘’]', '', temp)
+        temp = re.sub('[\[\]"“?:,{}!.;\'_”()‘’]', '', temp)
         position = temp.find("-")
         if position == -1:
             position = temp.find("—")
@@ -75,11 +111,16 @@ total.sort()
 for word in total:
     if word in dictionary:
         vocabulary.append(word)
+    else:
+        vocabulary = guess(word)
+if args.dump is not None:
+    dump.close()
+
 print("Total vocabulary:", len(vocabulary))
 
 # Export
 if args.output is not None:
-    out = open(args.output, "w", encoding=args.encoding)
+    out = openfile(args.output, args.encoding)
     for word in vocabulary:
       out.write(word+"\n")
     out.close()
